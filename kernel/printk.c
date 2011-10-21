@@ -16,6 +16,11 @@
  *	01Mar01 Andrew Morton
  */
 
+/*
+ * have kernel.h produce real declarations, depending on configuration
+ */
+#define DO_PRINTK 1
+
 #include <linux/kernel.h>
 #include <linux/mm.h>
 #include <linux/tty.h>
@@ -144,7 +149,7 @@ EXPORT_SYMBOL(console_set_on_cmdline);
 /* Flag: console code may call schedule() */
 static int console_may_schedule;
 
-#ifdef CONFIG_PRINTK
+#ifdef CONFIG_PRINTK_FUNC
 
 static char __log_buf[__LOG_BUF_LEN];
 static char *log_buf = __log_buf;
